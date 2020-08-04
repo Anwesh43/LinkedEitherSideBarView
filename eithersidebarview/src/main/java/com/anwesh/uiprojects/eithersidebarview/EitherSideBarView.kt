@@ -209,4 +209,13 @@ class EitherSideBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+    companion object {
+
+        fun create(activity : Activity) : EitherSideBarView {
+            val view : EitherSideBarView = EitherSideBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
+
