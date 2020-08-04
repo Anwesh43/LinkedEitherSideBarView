@@ -184,4 +184,27 @@ class EitherSideBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : EitherSideBarView) {
+
+        private val animator : Animator = Animator(view)
+        private val esb : EitherSideBar = EitherSideBar(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            esb.draw(canvas, paint)
+            animator.animate {
+                esb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            esb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
