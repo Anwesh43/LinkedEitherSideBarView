@@ -17,9 +17,10 @@ val colors : Array<String> = arrayOf("#3F51B5", "#009688", "#2196F3", "#4CAF50",
 val parts : Int = 4
 val scGap : Float = 0.02f / parts
 val strokeFactor : Int = 90
-val sizeFactor : Float = 3f
+val sizeFactor : Float = 4f
 val barWidthFactor : Float = 8f
 val backColor : Int = Color.parseColor("#BDBDBD")
+val finalDeg : Float = 180f
 val delay : Long = 20
 
 fun Int.inverse() : Float = 1f / this
@@ -34,8 +35,8 @@ fun Canvas.drawEitherSideBar(scale : Float, w : Float, h : Float, paint : Paint)
     val barW : Float = Math.min(w, h) / barWidthFactor
     val size : Float = Math.min(w, h) / sizeFactor
     save()
-    rotate(90f * sf4)
-    drawRect(RectF(-size, -barW, -size + 2 * size * sf2, 0f), paint)
+    rotate(finalDeg * sf4)
+    drawRect(RectF(-size, -barW, -size + (2 * size + barW) * sf2, 0f), paint)
     for (j in 0..1) {
         val sfi : Float = sf.divideScale(j, parts)
         save()
